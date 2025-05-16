@@ -5,7 +5,6 @@ import com.BankingApplication.entity.Account;
 import com.BankingApplication.mapper.AccountMapper;
 import com.BankingApplication.repository.AccountRepository;
 import com.BankingApplication.service.AccountService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,14 +28,14 @@ public class AccountServiceImpl implements AccountService
     }
 
     @Override
-    public AccountDto getAccountById(Long id) {
-        Account account=accountRepository.findAllById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
+    public AccountDto getAccountById(int id) {
+        Account account=accountRepository.findById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
         return AccountMapper.mapToAccountDto(account);
     }
 
     @Override
-    public AccountDto deposit(Long id, Double amount) {
-        Account account=accountRepository.findAllById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
+    public AccountDto deposit(int id, double amount) {
+        Account account=accountRepository.findById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
         double totalBalance=account.getBalance()+amount;
         account.setBalance(totalBalance);
         Account savedAccount=accountRepository.save(account);
@@ -44,8 +43,8 @@ public class AccountServiceImpl implements AccountService
     }
 
     @Override
-    public AccountDto withdraw(Long id, Double amounnt) {
-        Account account=accountRepository.findAllById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
+    public AccountDto withdraw(int id, double amounnt) {
+        Account account=accountRepository.findById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
         if(account.getBalance()<amounnt)
         {
             throw new RuntimeException("Insufficient Balance");
@@ -62,8 +61,8 @@ public class AccountServiceImpl implements AccountService
     }
 
     @Override
-    public void deleteAccount(Long id) {
-        Account account=accountRepository.findAllById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
+    public void deleteAccount(int id) {
+        Account account=accountRepository.findById(id).orElseThrow(()-> new RuntimeException("Account Dose not exist"));
         accountRepository.delete(account);
     }
 

@@ -22,25 +22,25 @@ public class AccountController
     @PatchMapping
     public ResponseEntity<AccountDto> addAccount(AccountDto accountDto)
     {
-        return new ResponseEntity<>(accountService.createAccount(accountDto)), HttpStatus.CREATED);
+        return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDto> getAccountById(Long id)
+    public ResponseEntity<AccountDto> getAccountById(int id)
     {
         AccountDto accountDto=accountService.getAccountById(id);
         return ResponseEntity.ok(accountDto);
     }
 
     @PostMapping("/{id}/deposit")
-    public ResponseEntity<AccountDto> deposit(@PatchMapping Long id, @RequestBody Map<String, Double> request)
+    public ResponseEntity<AccountDto> deposit(@PathVariable int id, @RequestBody Map<String, Double> request)
     {
         AccountDto accountDto=accountService.deposit(id,request.get("amount"));
         return ResponseEntity.ok(accountDto);
     }
 
     @PatchMapping("/{id}/withdraw")
-    public ResponseEntity<AccountDto> withdraw(@PathVariable Long id, @RequestBody Map<String, Double> request)
+    public ResponseEntity<AccountDto> withdraw(@PathVariable int id, @RequestBody Map<String, Double> request)
     {
         Double amount=request.get("amount");
         AccountDto accountDto=accountService.withdraw(id,amount);
@@ -54,7 +54,7 @@ public class AccountController
         return ResponseEntity.ok(accountDto);
     }
 
-    public ResponseEntity<String> deleteAccount(Long id)
+    public ResponseEntity<String> deleteAccount(int id)
     {
         accountService.deleteAccount(id);
         return ResponseEntity.ok("Account Deleted Successfully!!!");

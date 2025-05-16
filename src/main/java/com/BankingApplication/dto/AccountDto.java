@@ -2,17 +2,17 @@ package com.BankingApplication.dto;
 
 public class AccountDto
 {
-    private Long id;
+    private int id;
 
     private String accountHolderName;
 
     private double balance;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,7 +32,7 @@ public class AccountDto
         this.balance = balance;
     }
 
-    public AccountDto(Long id, String accountHolderName, double balance) {
+    public AccountDto(int id, String accountHolderName, double balance) {
         this.id = id;
         this.accountHolderName = accountHolderName;
         this.balance = balance;

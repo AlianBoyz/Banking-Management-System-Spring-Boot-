@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 @Table (name ="accounts")
 public class Account
 {
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,7 +30,7 @@ public class Account
         this.balance = balance;
     }
 
-    public Account(Long id, String accountHolderName, double balance)
+    public Account(int id, String accountHolderName, double balance)
     {
         super();
         this.id=id;
@@ -40,7 +40,7 @@ public class Account
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @Column (name = "account_holder_name")
     private String accountHolderName;
     private double balance;

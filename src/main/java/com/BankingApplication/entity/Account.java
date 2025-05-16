@@ -30,6 +30,10 @@ public class Account
         this.balance = balance;
     }
 
+    public Account() {
+
+    }
+
     public Account(int id, String accountHolderName, double balance)
     {
         super();
